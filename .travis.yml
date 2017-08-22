@@ -1,0 +1,11 @@
+language: csharp
+dist: trusty
+sudo: required
+mono: none
+dotnet: 2.0.0
+install:
+  - dotnet --info
+  - dotnet restore
+script:
+  - dotnet build ./RaspberryPi.Native/RaspberryPi.Native.csproj
+  - dotnet build ./RaspberryPi.HelloDispmanx/RaspberryPi.HelloDispmanx.csproj
