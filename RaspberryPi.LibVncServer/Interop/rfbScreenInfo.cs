@@ -6,7 +6,7 @@ using System.Text;
 namespace RaspberryPi.LibVncServer
 {
     [StructLayout(LayoutKind.Sequential)]
-    public sealed class RawRfbScreenInfo
+    public struct rfbScreenInfo
     {
         /** this structure has children that are scaled versions of this screen */
         //struct _rfbScreenInfo *scaledScreenNext;

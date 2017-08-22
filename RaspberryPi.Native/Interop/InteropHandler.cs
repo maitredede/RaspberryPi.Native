@@ -8,7 +8,11 @@ using System.Text;
 
 namespace RaspberryPi.Interop
 {
-    internal sealed class InteropHandler<T>
+    /// <summary>
+    /// Interop helper class
+    /// </summary>
+    /// <typeparam name="T">Structure of native data</typeparam>
+    public sealed class InteropHandler<T>
     {
         private static readonly MethodInfo MarshalSizeOf = typeof(Marshal).GetTypeInfo().GetMethod(nameof(Marshal.SizeOf), Type.EmptyTypes);
         private static readonly MethodInfo MarshalPtrToStruct = typeof(Marshal).GetTypeInfo().GetMethod(nameof(Marshal.PtrToStructure), new[] { typeof(IntPtr) });
@@ -18,7 +22,7 @@ namespace RaspberryPi.Interop
         private readonly Dictionary<string, InteropHandlerData> s_offsets;
 
         private readonly Func<IntPtr> m_ptrGetter;
-        internal IntPtr GetPtr()
+        public IntPtr GetPtr()
         {
             return this.m_ptrGetter();
         }
@@ -161,7 +165,7 @@ namespace RaspberryPi.Interop
             s_offsets = s_data.ToDictionary(d => d.Member.Name);
         }
 
-        internal int GetOffset(string prop)
+        public int GetOffset(string prop)
         {
             return s_offsets[prop].Offset;
         }
@@ -177,7 +181,7 @@ namespace RaspberryPi.Interop
             }
         }
 
-        internal void DumpHex(string property, int offset, int count)
+        public void DumpHex(string property, int offset, int count)
         {
             InteropHandlerData data = this.s_offsets[property];
             int min = data.Offset + offset;
@@ -191,7 +195,7 @@ namespace RaspberryPi.Interop
             Console.WriteLine();
         }
 
-        internal string ReadString([CallerMemberName]string prop = null)
+        public string ReadString([CallerMemberName]string prop = null)
         {
             InteropHandlerData data = this.s_offsets[prop];
             if (data == null)
@@ -233,7 +237,7 @@ namespace RaspberryPi.Interop
             //throw new NotImplementedException();
         }
 
-        internal void WriteString(string value, [CallerMemberName]string prop = null)
+        public void WriteString(string value, [CallerMemberName]string prop = null)
         {
             //InteropHandlerData data = this.s_offsets[prop];
             //switch (data.StringMode)
@@ -267,63 +271,63 @@ namespace RaspberryPi.Interop
             throw new NotImplementedException();
         }
 
-        internal TStruct ReadStruct<TStruct>([CallerMemberName]string prop = null)
+        public TStruct ReadStruct<TStruct>([CallerMemberName]string prop = null)
         {
             InteropHandlerData data = this.s_offsets[prop];
             IntPtr ptr = this.m_ptrGetter() + data.Offset;
             return Marshal.PtrToStructure<TStruct>(ptr);
         }
 
-        internal void WriteStruct<TStruct>(TStruct value, [CallerMemberName]string prop = null)
+        public void WriteStruct<TStruct>(TStruct value, [CallerMemberName]string prop = null)
         {
             InteropHandlerData data = this.s_offsets[prop];
             IntPtr ptr = this.m_ptrGetter() + data.Offset;
             Marshal.StructureToPtr(value, ptr, false);
         }
 
-        internal void WriteIntPtr(IntPtr value, [CallerMemberName]string prop = null)
+        public void WriteIntPtr(IntPtr value, [CallerMemberName]string prop = null)
         {
             InteropHandlerData data = this.s_offsets[prop];
             Marshal.WriteIntPtr(this.m_ptrGetter(), data.Offset, value);
         }
 
-        internal IntPtr ReadIntPtr([CallerMemberName]string prop = null)
+        public IntPtr ReadIntPtr([CallerMemberName]string prop = null)
         {
             InteropHandlerData data = this.s_offsets[prop];
             return Marshal.ReadIntPtr(this.m_ptrGetter(), data.Offset);
         }
 
-        internal void WriteInt32(int value, [CallerMemberName]string prop = null)
+        public void WriteInt32(int value, [CallerMemberName]string prop = null)
         {
             InteropHandlerData data = this.s_offsets[prop];
             Marshal.WriteInt32(this.m_ptrGetter(), data.Offset, value);
         }
 
-        internal int ReadInt32([CallerMemberName]string prop = null)
+        public int ReadInt32([CallerMemberName]string prop = null)
         {
             InteropHandlerData data = this.s_offsets[prop];
             return Marshal.ReadInt32(this.m_ptrGetter(), data.Offset);
         }
 
-        internal void WriteUInt32(uint value, [CallerMemberName]string prop = null)
+        public void WriteUInt32(uint value, [CallerMemberName]string prop = null)
         {
             InteropHandlerData data = this.s_offsets[prop];
             Marshal.WriteInt32(this.m_ptrGetter(), data.Offset, unchecked((int)value));
         }
 
-        internal uint ReadUInt32([CallerMemberName]string prop = null)
+        public uint ReadUInt32([CallerMemberName]string prop = null)
         {
             InteropHandlerData data = this.s_offsets[prop];
             return unchecked((uint)Marshal.ReadInt32(this.m_ptrGetter(), data.Offset));
         }
 
-        internal void WriteBool_Byte(bool value, [CallerMemberName]string prop = null)
+        public void WriteBool_Byte(bool value, [CallerMemberName]string prop = null)
         {
             InteropHandlerData data = this.s_offsets[prop];
             Marshal.WriteByte(this.m_ptrGetter(), data.Offset, value ? (byte)1 : (byte)0);
         }
 
-        internal bool ReadBool_Byte([CallerMemberName]string prop = null)
+        public bool ReadBool_Byte([CallerMemberName]string prop = null)
         {
             InteropHandlerData data = this.s_offsets[prop];
             return Marshal.ReadByte(this.m_ptrGetter(), data.Offset) != 0;

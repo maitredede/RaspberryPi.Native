@@ -12,17 +12,17 @@ namespace RaspberryPi.LibVncServer
         internal RfbServer(RfbScreen screen)
         {
             this.m_screen = screen;
-            NativeMethods.rfbInitServer(this.m_screen.Handle);
+            NativeMethods.rfbInitServer(this.m_screen.Handle.GetPtr());
         }
 
         public bool IsActive()
         {
-            return NativeMethods.rfbIsActive(this.m_screen.Handle);
+            return NativeMethods.rfbIsActive(this.m_screen.Handle.GetPtr());
         }
 
         public void Dispose()
         {
-            NativeMethods.rfbShutdownServer(this.m_screen.Handle, true);
+            NativeMethods.rfbShutdownServer(this.m_screen.Handle.GetPtr(), true);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 namespace RaspberryPi.LibVncServer
 {
     [StructLayout(LayoutKind.Sequential)]
-    public sealed class sockaddr_in
+    public struct sockaddr_in
     {
         public ushort sin_family;
         public ushort sin_port;

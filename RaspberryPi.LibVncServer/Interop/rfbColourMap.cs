@@ -6,7 +6,7 @@ using System.Text;
 namespace RaspberryPi.LibVncServer
 {
     [StructLayout(LayoutKind.Sequential)]
-    public sealed class rfbColourMap
+    public struct rfbColourMap
     {
         public uint count;
         public bool is16;

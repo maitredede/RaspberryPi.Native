@@ -61,9 +61,9 @@ namespace RaspberryPi.LibVncServer.Interop
 
 
         [DllImport(LIB, EntryPoint = "rfbMarkRectAsModified", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rfbMarkRectAsModified(RawRfbScreenInfo rfbScreen, int x1, int y1, int x2, int y2);
+        public static extern void rfbMarkRectAsModified(rfbScreenInfo rfbScreen, int x1, int y1, int x2, int y2);
 
         [DllImport(LIB, EntryPoint = "rfbProcessEvents", CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool rfbProcessEvents(RawRfbScreenInfo screenInfo, int usec);
+        public static extern bool rfbProcessEvents(rfbScreenInfo screenInfo, int usec);
     }
 }

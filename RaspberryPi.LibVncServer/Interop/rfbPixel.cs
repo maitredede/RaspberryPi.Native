@@ -6,7 +6,7 @@ using System.Text;
 namespace RaspberryPi.LibVncServer
 {
     [StructLayout(LayoutKind.Sequential)]
-    public sealed class rfbPixel
+    public struct rfbPixel
     {
         public uint value;
     }

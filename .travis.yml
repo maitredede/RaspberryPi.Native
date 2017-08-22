@@ -7,5 +7,4 @@ install:
   - dotnet --info
   - dotnet restore
 script:
-  - dotnet build ./RaspberryPi.Native/RaspberryPi.Native.csproj
-  - dotnet build ./RaspberryPi.HelloDispmanx/RaspberryPi.HelloDispmanx.csproj
+  - dotnet build

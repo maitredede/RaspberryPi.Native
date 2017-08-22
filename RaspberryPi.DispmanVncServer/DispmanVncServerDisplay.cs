@@ -61,48 +61,49 @@ namespace RaspberryPi.DispmanVncServer
 
                 using (RfbScreen server = new RfbScreen(null, padded_width, this.m_display.Height, 5, 3, BPP))
                 {
-                    server.DumpProps();
-                    server.DumpPrintf();
+                    throw new NotImplementedException();
+                    //server.DumpProps();
+                    //server.DumpPrintf();
 
-                    Console.WriteLine("width={0}", server.Width);
-                    Console.WriteLine("paddedWidthInBytes={0}", server.PaddedWidthInBytes);
-                    Console.WriteLine("height={0}", server.Height);
-                    Console.WriteLine("depth={0}", server.Depth);
-                    Console.WriteLine("bitsPerPixel={0}", server.BitsPerPixel);
-                    Console.WriteLine("sizeInBytes={0}", server.SizeInBytes);
-                    Console.WriteLine("blackPixel={0}", server.BlackPixel);
-                    Console.WriteLine("whitePixel={0}", server.WhitePixel);
-                    //Console.WriteLine("screenData={0}", server.screenData);
-                    Console.WriteLine("desktopName={0}", server.DesktopName);
-                    Console.WriteLine("thisHost={0}", server.ThisHost);
-                    Console.WriteLine("autoPort={0}", server.AutoPort);
-                    Console.WriteLine("port={0}", server.Port);
-                    Console.WriteLine("udpPort={0}", server.UdpPort);
-                    Console.WriteLine("deferUpdateTime={0}", server.DeferUpdateTime);
+                    //Console.WriteLine("width={0}", server.Width);
+                    //Console.WriteLine("paddedWidthInBytes={0}", server.PaddedWidthInBytes);
+                    //Console.WriteLine("height={0}", server.Height);
+                    //Console.WriteLine("depth={0}", server.Depth);
+                    //Console.WriteLine("bitsPerPixel={0}", server.BitsPerPixel);
+                    //Console.WriteLine("sizeInBytes={0}", server.SizeInBytes);
+                    //Console.WriteLine("blackPixel={0}", server.BlackPixel);
+                    //Console.WriteLine("whitePixel={0}", server.WhitePixel);
+                    ////Console.WriteLine("screenData={0}", server.screenData);
+                    //Console.WriteLine("desktopName={0}", server.DesktopName);
+                    //Console.WriteLine("thisHost={0}", server.ThisHost);
+                    //Console.WriteLine("autoPort={0}", server.AutoPort);
+                    //Console.WriteLine("port={0}", server.Port);
+                    //Console.WriteLine("udpPort={0}", server.UdpPort);
+                    //Console.WriteLine("deferUpdateTime={0}", server.DeferUpdateTime);
 
-                    Console.WriteLine("====");
-                    server.DesktopName = this.GetType().Name;
-                    Console.WriteLine("desktopName={0}", server.DesktopName);
-                    this.m_framebuffer = Marshal.AllocHGlobal(pitch * this.m_display.Height);
-                    //server.FrameBuffer = this.m_framebuffer;
-                    server.AlwaysShared = true;
-                    Console.WriteLine("rfbInitServer");
-                    using (var srv = server.InitServer())
-                    {
-                        Console.WriteLine("rfbInitServer ok");
-                        while (srv.IsActive())
-                        {
-                            //if (TimeToTakePicture(server))
-                            //{
-                            //    if (TakePicture())
-                            //    {
-                            //        server.MarkRectAsModified(server, r_x0, r_y0, r_x1, r_y1);
-                            //    }
-                            //}
-                            //usec = server.deferUpdateTime * 1000;
-                            //server.ProcessEvents(server, usec);
-                        }
-                    }
+                    //Console.WriteLine("====");
+                    //server.DesktopName = this.GetType().Name;
+                    //Console.WriteLine("desktopName={0}", server.DesktopName);
+                    //this.m_framebuffer = Marshal.AllocHGlobal(pitch * this.m_display.Height);
+                    ////server.FrameBuffer = this.m_framebuffer;
+                    //server.AlwaysShared = true;
+                    //Console.WriteLine("rfbInitServer");
+                    //using (var srv = server.InitServer())
+                    //{
+                    //    Console.WriteLine("rfbInitServer ok");
+                    //    while (srv.IsActive())
+                    //    {
+                    //        //if (TimeToTakePicture(server))
+                    //        //{
+                    //        //    if (TakePicture())
+                    //        //    {
+                    //        //        server.MarkRectAsModified(server, r_x0, r_y0, r_x1, r_y1);
+                    //        //    }
+                    //        //}
+                    //        //usec = server.deferUpdateTime * 1000;
+                    //        //server.ProcessEvents(server, usec);
+                    //    }
+                    //}
                 }
 
                 //server.frameBuffer = this.m_framebuffer = Marshal.AllocHGlobal(pitch * this.m_display.Height);
