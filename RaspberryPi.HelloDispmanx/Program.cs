@@ -23,8 +23,8 @@ namespace RaspberryPi.HelloDispmanx
             Screen screen = Screen.MAIN_LCD;
             short width = WIDTH;
             short height = HEIGHT;
-            short pitch = ALIGN_UP((short)(width * 2), 32);
-            short aligned_height = ALIGN_UP(height, 16);
+            short pitch = ALIGN_UP((short)(width * 2), (short)32);
+            short aligned_height = ALIGN_UP(height, (short)16);
             VC_IMAGE_TYPE_T type = VC_IMAGE_TYPE_T.VC_IMAGE_RGB565;
 
             try

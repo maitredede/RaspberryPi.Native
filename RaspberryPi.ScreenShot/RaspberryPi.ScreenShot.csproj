@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RaspberryPi.Native\RaspberryPi.Native.csproj" />
+
+    <PackageReference Include="ImageSharp" Version="1.0.0-alpha9-00182" />
+    <PackageReference Include="ImageSharp.Drawing" Version="1.0.0-alpha9-00177" />
+  </ItemGroup>
+
+</Project>

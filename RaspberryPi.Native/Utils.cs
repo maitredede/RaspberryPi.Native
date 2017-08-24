@@ -7,6 +7,11 @@ namespace RaspberryPi
 {
     public static class Utils
     {
+        public static int ALIGN_UP(int x, int y)
+        {
+            return (x + (y) - 1) & ~((y) - 1);
+        }
+
         public static short ALIGN_UP(short x, short y)
         {
             return (short)((x + (y) - 1) & ~((y) - 1));

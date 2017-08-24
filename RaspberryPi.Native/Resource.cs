@@ -42,7 +42,7 @@ namespace RaspberryPi
                 };
                 ret = Native.DispmanxNativeMethods.ResourceWriteData(this.m_handle, type, pitch, dataHandle.AddrOfPinnedObject(), ref vcrect);
                 if (ret != DISPMANX_STATUS_T.SUCCESS)
-                    throw new DispmanException($"Operation failed : {nameof(Native.DispmanxNativeMethods.ResourceWriteData)}");
+                    throw new DispmanException($"Operation failed : {nameof(Native.DispmanxNativeMethods.ResourceWriteData)} returned {ret}");
             }
             finally
             {
@@ -55,15 +55,16 @@ namespace RaspberryPi
             Native.DispmanxNativeMethods.ResourceDelete(this.m_handle);
         }
 
-        public void ReadData(Rectangle rect, byte[] image, uint pitch)
+        public void ReadData(Rectangle rect, byte[] image, int dest_pitch)
         {
             GCHandle imageHandle = GCHandle.Alloc(image, GCHandleType.Pinned);
             try
             {
                 VC_RECT_T vcRect = new VC_RECT_T(rect);
-                var ret = DispmanxNativeMethods.ResourceReadData(this.m_handle, ref vcRect, imageHandle.AddrOfPinnedObject(), pitch);
+                IntPtr dst_address = imageHandle.AddrOfPinnedObject();
+                var ret = DispmanxNativeMethods.ResourceReadData(this.m_handle, ref vcRect, dst_address, (uint)dest_pitch);
                 if (ret != DISPMANX_STATUS_T.SUCCESS)
-                    throw new DispmanException($"Operation failed : {nameof(Native.DispmanxNativeMethods.ResourceReadData)}");
+                    throw new DispmanException($"Operation failed : {nameof(Native.DispmanxNativeMethods.ResourceReadData)} returned {ret}");
             }
             finally
             {

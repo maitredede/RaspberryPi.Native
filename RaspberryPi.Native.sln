@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.8
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaspberryPi.Native", "RaspberryPi.Native\RaspberryPi.Native.csproj", "{DDA003C8-25A2-494C-B4BE-7C3A2C97ECB8}"
 EndProject
@@ -17,13 +17,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaspberryPi.RaspiStill", "R
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{4A42796D-B048-406B-9DC8-F14CA47782E8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VNC", "VNC", "{4782FC06-E022-4416-990C-505B45A3DABE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RemoteDisplay", "RemoteDisplay", "{4782FC06-E022-4416-990C-505B45A3DABE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7586748A-B526-407F-BBB2-691635B2F74C}"
 	ProjectSection(SolutionItems) = preProject
 		.travis.yml = .travis.yml
 		appveyor.yml = appveyor.yml
+		NuGet.config = NuGet.config
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaspberryPi.DisplaySpyServer", "RaspberryPi.DisplaySpyServer\RaspberryPi.DisplaySpyServer.csproj", "{77D46936-2604-4930-A376-8492D68629F3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaspberryPi.DisplaySpyServer.Lib", "RaspberryPi.DisplaySpyServer.Lib\RaspberryPi.DisplaySpyServer.Lib.csproj", "{423392B3-9DC1-441C-B3A1-CD098B2D9E70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaspberryPi.ScreenShot", "RaspberryPi.ScreenShot\RaspberryPi.ScreenShot.csproj", "{49F61758-3677-4B64-8391-F5D26E82F118}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,6 +114,42 @@ Global
 		{B710BD06-D037-4669-A93A-4DCDB5B3D7AA}.Release|x64.Build.0 = Release|Any CPU
 		{B710BD06-D037-4669-A93A-4DCDB5B3D7AA}.Release|x86.ActiveCfg = Release|Any CPU
 		{B710BD06-D037-4669-A93A-4DCDB5B3D7AA}.Release|x86.Build.0 = Release|Any CPU
+		{77D46936-2604-4930-A376-8492D68629F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77D46936-2604-4930-A376-8492D68629F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77D46936-2604-4930-A376-8492D68629F3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{77D46936-2604-4930-A376-8492D68629F3}.Debug|x64.Build.0 = Debug|Any CPU
+		{77D46936-2604-4930-A376-8492D68629F3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{77D46936-2604-4930-A376-8492D68629F3}.Debug|x86.Build.0 = Debug|Any CPU
+		{77D46936-2604-4930-A376-8492D68629F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77D46936-2604-4930-A376-8492D68629F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77D46936-2604-4930-A376-8492D68629F3}.Release|x64.ActiveCfg = Release|Any CPU
+		{77D46936-2604-4930-A376-8492D68629F3}.Release|x64.Build.0 = Release|Any CPU
+		{77D46936-2604-4930-A376-8492D68629F3}.Release|x86.ActiveCfg = Release|Any CPU
+		{77D46936-2604-4930-A376-8492D68629F3}.Release|x86.Build.0 = Release|Any CPU
+		{423392B3-9DC1-441C-B3A1-CD098B2D9E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{423392B3-9DC1-441C-B3A1-CD098B2D9E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{423392B3-9DC1-441C-B3A1-CD098B2D9E70}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{423392B3-9DC1-441C-B3A1-CD098B2D9E70}.Debug|x64.Build.0 = Debug|Any CPU
+		{423392B3-9DC1-441C-B3A1-CD098B2D9E70}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{423392B3-9DC1-441C-B3A1-CD098B2D9E70}.Debug|x86.Build.0 = Debug|Any CPU
+		{423392B3-9DC1-441C-B3A1-CD098B2D9E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{423392B3-9DC1-441C-B3A1-CD098B2D9E70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{423392B3-9DC1-441C-B3A1-CD098B2D9E70}.Release|x64.ActiveCfg = Release|Any CPU
+		{423392B3-9DC1-441C-B3A1-CD098B2D9E70}.Release|x64.Build.0 = Release|Any CPU
+		{423392B3-9DC1-441C-B3A1-CD098B2D9E70}.Release|x86.ActiveCfg = Release|Any CPU
+		{423392B3-9DC1-441C-B3A1-CD098B2D9E70}.Release|x86.Build.0 = Release|Any CPU
+		{49F61758-3677-4B64-8391-F5D26E82F118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49F61758-3677-4B64-8391-F5D26E82F118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49F61758-3677-4B64-8391-F5D26E82F118}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{49F61758-3677-4B64-8391-F5D26E82F118}.Debug|x64.Build.0 = Debug|Any CPU
+		{49F61758-3677-4B64-8391-F5D26E82F118}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{49F61758-3677-4B64-8391-F5D26E82F118}.Debug|x86.Build.0 = Debug|Any CPU
+		{49F61758-3677-4B64-8391-F5D26E82F118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49F61758-3677-4B64-8391-F5D26E82F118}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49F61758-3677-4B64-8391-F5D26E82F118}.Release|x64.ActiveCfg = Release|Any CPU
+		{49F61758-3677-4B64-8391-F5D26E82F118}.Release|x64.Build.0 = Release|Any CPU
+		{49F61758-3677-4B64-8391-F5D26E82F118}.Release|x86.ActiveCfg = Release|Any CPU
+		{49F61758-3677-4B64-8391-F5D26E82F118}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,6 +160,9 @@ Global
 		{31A2AC1C-AAC7-4873-A952-CF4AB3B5AA6D} = {4782FC06-E022-4416-990C-505B45A3DABE}
 		{60FE1276-BAFD-4B4F-AB12-27F99971836A} = {4782FC06-E022-4416-990C-505B45A3DABE}
 		{B710BD06-D037-4669-A93A-4DCDB5B3D7AA} = {4A42796D-B048-406B-9DC8-F14CA47782E8}
+		{77D46936-2604-4930-A376-8492D68629F3} = {4782FC06-E022-4416-990C-505B45A3DABE}
+		{423392B3-9DC1-441C-B3A1-CD098B2D9E70} = {4782FC06-E022-4416-990C-505B45A3DABE}
+		{49F61758-3677-4B64-8391-F5D26E82F118} = {4782FC06-E022-4416-990C-505B45A3DABE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {00A863B2-54F7-4373-A515-41E9AB53B649}

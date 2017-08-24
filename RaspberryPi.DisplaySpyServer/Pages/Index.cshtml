@@ -1,0 +1,40 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<div class="row">
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Still image</h1>
+            </div>
+            <div class="panel-body">
+                <img src="~/display/image" alt="" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Stream as image</h1>
+            </div>
+            <div class="panel-body">
+                <img src="~/display/stream" alt="" />
+            </div>
+        </div>
+    </div>
+
+    @*<div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Stream as video</h1>
+            </div>
+            <div class="panel-body">
+                <video src="~/display/stream" autoplay></video>
+            </div>
+        </div>
+    </div>*@
+</div>
