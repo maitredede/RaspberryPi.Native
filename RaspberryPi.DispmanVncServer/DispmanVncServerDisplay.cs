@@ -47,7 +47,7 @@ namespace RaspberryPi.DispmanVncServer
             byte[] image;
             byte[] back_image;
 
-            pitch = ALIGN_UP((short)(2 * this.m_display.Width), 32);
+            pitch = ALIGN_UP((short)(2 * this.m_display.Width), (short)32);
             padded_width = (short)(pitch / BPP);
 
             image = new byte[pitch * this.m_display.Height];
