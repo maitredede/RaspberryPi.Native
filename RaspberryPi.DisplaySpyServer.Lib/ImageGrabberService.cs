@@ -40,11 +40,11 @@ namespace RaspberryPi.DisplaySpyServer
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            this.m_logger.LogInformation("ImageGrabberService.StartAsync");
+            this.m_logger.LogDebug("Starting imagegrabber service");
             this.m_cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
             this.m_cts.Token.Register(() =>
             {
-                this.m_logger.LogInformation("ImageGrabberService cancellation requested");
+                this.m_logger.LogDebug("ImageGrabberService cancellation requested");
             });
 
             this.m_inputBuffer = new BufferBlock<ImageData>(new DataflowBlockOptions { CancellationToken = this.m_cts.Token });
@@ -52,13 +52,12 @@ namespace RaspberryPi.DisplaySpyServer
             this.m_output = new BroadcastBlock<ImageData>(img => img.Clone());
             this.m_imageLogger = new ActionBlock<ImageData>(img =>
             {
-                this.m_logger.LogInformation("Got image");
             });
 
             this.m_inputBuffer.LinkTo(this.m_transform);
             this.m_inputBuffer.Completion.ContinueWith(t =>
             {
-                this.m_logger.LogInformation("input buffer completed");
+                this.m_logger.LogDebug("input buffer completed");
                 if (t.IsFaulted) ((IDataflowBlock)this.m_transform).Fault(t.Exception);
                 else
                     this.m_transform.Complete();
@@ -66,7 +65,7 @@ namespace RaspberryPi.DisplaySpyServer
             this.m_transform.LinkTo(this.m_output);
             this.m_transform.Completion.ContinueWith(t =>
             {
-                this.m_logger.LogInformation("transform block completed");
+                this.m_logger.LogDebug("transform block completed");
                 if (t.IsFaulted) ((IDataflowBlock)this.m_output).Fault(t.Exception);
                 else
                     this.m_output.Complete();
@@ -74,7 +73,7 @@ namespace RaspberryPi.DisplaySpyServer
             this.m_output.LinkTo(this.m_imageLogger);
             this.m_output.Completion.ContinueWith(t =>
             {
-                this.m_logger.LogInformation("output block completed");
+                this.m_logger.LogDebug("output block completed");
                 if (t.IsFaulted) ((IDataflowBlock)this.m_imageLogger).Fault(t.Exception);
                 else
                     this.m_imageLogger.Complete();
@@ -87,7 +86,7 @@ namespace RaspberryPi.DisplaySpyServer
             catch (FontFamilyNotFountException)
             {
                 int count = SystemFonts.Collection.Families.Count();
-                this.m_logger.LogError($"Arial not found. {count} fonts available.");
+                this.m_logger.LogWarning($"Arial not found. {count} fonts available, taking first");
                 this.m_arial = SystemFonts.Collection.Families.FirstOrDefault();
                 if (count > 0)
                 {
@@ -109,7 +108,7 @@ namespace RaspberryPi.DisplaySpyServer
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            this.m_logger.LogInformation("ImageGrabberService.StopAsync");
+            this.m_logger.LogDebug("Stopping imagegrabber service");
             this.m_cts.Cancel();
             this.m_th.Join();
             return Task.CompletedTask;
@@ -120,7 +119,6 @@ namespace RaspberryPi.DisplaySpyServer
             CancellationToken token = (CancellationToken)state;
             Stopwatch sw = Stopwatch.StartNew();
             TimeSpan waitDelay = TimeSpan.FromSeconds(1d / this.m_options.FPS);
-            Console.WriteLine("waitDelay " + waitDelay);
             try
             {
                 while (!token.IsCancellationRequested)
@@ -164,37 +162,5 @@ namespace RaspberryPi.DisplaySpyServer
             }
             return data;
         }
-
-        //protected override async Task ExecuteAsync(CancellationToken cancellationToken)
-        //{
-        //    int fps = 1;
-        //    Stopwatch sw = Stopwatch.StartNew();
-        //    TimeSpan waitDelay = TimeSpan.FromSeconds(1d / fps);
-        //    Console.WriteLine("waitDelay " + waitDelay);
-        //    try
-        //    {
-        //        while (!cancellationToken.IsCancellationRequested)
-        //        {
-        //            TimeSpan start = sw.Elapsed;
-        //            this.m_imageProvider.ProduceImage();
-        //            TimeSpan duration = sw.Elapsed - start;
-        //            TimeSpan wait = waitDelay - duration;
-        //            Console.WriteLine($"duration {duration} waitDelay {waitDelay} wait {wait}");
-        //            if (wait > TimeSpan.Zero)
-        //            {
-        //                await Task.Delay(wait);
-        //            }
-        //            else
-        //            {
-        //                await Task.Delay(1);
-        //            }
-        //        }
-        //    }
-        //    finally
-        //    {
-        //        sw.Stop();
-        //        this.m_imageProvider.Complete();
-        //    }
-        //}
-    }
+   }
 }

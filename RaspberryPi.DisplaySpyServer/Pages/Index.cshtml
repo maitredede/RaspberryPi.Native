@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Home page";
 }
-<div class="row">
+@*<div class="row">
     <div class="col-lg-6">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -14,7 +14,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 <div class="row">
     <div class="col-lg-6">
         <div class="panel panel-default">
@@ -26,15 +26,126 @@
             </div>
         </div>
     </div>
-
-    @*<div class="col-lg-6">
+    <div class="col-lg-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1 class="panel-title">Stream as video</h1>
+                <h1 class="panel-title">Graphs</h1>
             </div>
             <div class="panel-body">
-                <video src="~/display/stream" autoplay></video>
+                <div id="graphs"></div>
             </div>
         </div>
-    </div>*@
+    </div>
 </div>
+
+@section scripts {
+    <script>
+        var isConnected = false;
+        function invoke(connection, method, ...args) {
+            if (!isConnected) {
+                return;
+            }
+            var argsArray = Array.prototype.slice.call(arguments);
+            connection.invoke.apply(connection, argsArray.slice(1))
+                .then(result => {
+                    console.log("invocation completed successfully: " + (result === null ? '(null)' : result));
+                    if (result) {
+                        addLine('message-list', result);
+                    }
+                })
+                .catch(err => {
+                    addLine('message-list', err, 'red');
+                });
+        }
+        function getText(id) {
+            return document.getElementById(id).value;
+        }
+        let transportType = signalR.TransportType[getParameterByName('transport')] || signalR.TransportType.WebSockets;
+        let logger = new signalR.ConsoleLogger(signalR.LogLevel.Information);
+        let hubRoute = getParameterByName('hubType') || "tempHub";
+        console.log('Hub Route:' + hubRoute);
+        //document.getElementById('head1').innerHTML = signalR.TransportType[transportType];
+        //let connectButton = document.getElementById('connect');
+        //let disconnectButton = document.getElementById('disconnect');
+        //disconnectButton.disabled = true;
+        var connection;
+        //click('connect', event => {
+        $(document).ready(event => {
+            var graphContainer = document.getElementById("graphs");
+            var graphOptions = {
+                start: vis.moment().add(-5, "minutes"),
+                end: vis.moment()
+            }
+            var graphData = new vis.DataSet();
+            var graphGroups = new vis.DataSet();
+            graphGroups.add({ id: 1, content: "CPU" });
+            graphGroups.add({ id: 2, content: "GPU" });
+            var graph2d = new vis.Graph2d(graphContainer, graphData, graphGroups, graphOptions);
+
+            //connectButton.disabled = true;
+            //disconnectButton.disabled = false;
+            console.log(`http://${document.location.host}/${hubRoute}`);
+            let http = new signalR.HttpConnection(`http://${document.location.host}/${hubRoute}`, { transport: transportType, logger: logger });
+            connection = new signalR.HubConnection(http, logger);
+            connection.on("data", msg => {
+                console.info("data", msg);
+                graphData.add({ x: msg.date, group: 1, y: msg.cpuTemp });
+                graphData.add({ x: msg.date, group: 2, y: msg.gpuTemp });
+
+                var now = vis.moment();
+                var range = graph2d.getWindow();
+                var interval = range.end - range.start;
+                graph2d.setWindow(now - interval, now, { animation: false });
+            });
+            connection.onClosed = e => {
+                if (e) {
+                    console.error('Connection closed with error: ' + e);
+                    //addLine('message-list', 'Connection closed with error: ' + e, 'red');
+                }
+                else {
+                    console.info('Disconnected');
+                    //addLine('message-list', 'Disconnected', 'green');
+                }
+            }
+            connection.start()
+                .then(() => {
+                    isConnected = true;
+                    console.info('Connected successfully');
+                    //addLine('message-list', 'Connected successfully', 'green');
+                })
+                .catch(err => {
+                    //addLine('message-list', err, 'red');
+                    console.error(err);
+                });
+        });
+        //click('disconnect', event => {
+        //    connectButton.disabled = false;
+        //    disconnectButton.disabled = true;
+        //    connection.stop()
+        //        .then(() => {
+        //            isConnected = false;
+        //        });
+        //});
+        //click('broadcast', event => {
+        //    let data = getText('message-text');
+        //    invoke(connection, 'Send', data);
+        //});
+        //click('join-group', event => {
+        //    let groupName = getText('message-text');
+        //    invoke(connection, 'JoinGroup', groupName);
+        //});
+        //click('leave-group', event => {
+        //    let groupName = getText('message-text');
+        //    invoke(connection, 'LeaveGroup', groupName);
+        //});
+        //click('groupmsg', event => {
+        //    let groupName = getText('target');
+        //    let message = getText('private-message-text');
+        //    invoke(connection, 'SendToGroup', groupName, message);
+        //});
+        //click('send', event => {
+        //    let data = getText('me-message-text');
+        //    invoke(connection, 'Echo', data);
+        //});
+    </script>
+}

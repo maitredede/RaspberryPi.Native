@@ -2,10 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace RaspberryPi.DisplaySpyServer
 {
@@ -23,6 +26,10 @@ namespace RaspberryPi.DisplaySpyServer
         {
             services.AddMvc();
             services.AddDispmanSpy();
+            services.AddSignalR(options =>
+            {
+            });
+            services.AddSingleton<IHostedService, ClockedService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +46,12 @@ namespace RaspberryPi.DisplaySpyServer
             }
 
             app.UseStaticFiles();
+            app.UseSignalR(options =>
+            {
+                options.MapHub<TempHub>("tempHub", sckOptions =>
+                {
+                });
+            });
 
             app.UseMvcWithDefaultRoute();
         }
