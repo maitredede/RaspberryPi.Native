@@ -6,7 +6,7 @@ using System.Text;
 namespace RaspberryPi.Native
 {
     [StructLayout(LayoutKind.Sequential)]
-    internal struct VCHI_MEM_HANDLE_T
+    public sealed class VCHI_MEM_HANDLE_T
     {
         public IntPtr handle;
     }

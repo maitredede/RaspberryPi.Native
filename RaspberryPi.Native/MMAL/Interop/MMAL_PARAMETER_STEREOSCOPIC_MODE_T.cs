@@ -5,7 +5,8 @@ using System.Text;
 
 namespace RaspberryPi.MMAL.Interop
 {
-    internal struct MMAL_PARAMETER_STEREOSCOPIC_MODE_T
+    [StructLayout(LayoutKind.Sequential)]
+    public sealed class MMAL_PARAMETER_STEREOSCOPIC_MODE_T
     {
         public MMAL_PARAMETER_HEADER_T hdr;
         [MarshalAs(UnmanagedType.I4)]

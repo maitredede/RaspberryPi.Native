@@ -33,13 +33,7 @@ namespace RaspberryPi
             GCHandle dataHandle = GCHandle.Alloc(data, GCHandleType.Pinned);
             try
             {
-                VC_RECT_T vcrect = new VC_RECT_T
-                {
-                    x = rect.X,
-                    y = rect.Y,
-                    width = rect.Width,
-                    height = rect.Height
-                };
+                VC_RECT_T vcrect = new VC_RECT_T(rect);
                 ret = Native.DispmanxNativeMethods.ResourceWriteData(this.m_handle, type, pitch, dataHandle.AddrOfPinnedObject(), ref vcrect);
                 if (ret != DISPMANX_STATUS_T.SUCCESS)
                     throw new DispmanException($"Operation failed : {nameof(Native.DispmanxNativeMethods.ResourceWriteData)} returned {ret}");

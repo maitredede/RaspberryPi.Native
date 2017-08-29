@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 using DISPLAY_INPUT_FORMAT_T = RaspberryPi.Native.VCOS_DISPLAY_INPUT_FORMAT_T;
 
 namespace RaspberryPi.Native
 {
-    internal struct DISPMANX_MODEINFO_T
+    [StructLayout(LayoutKind.Sequential)]
+    public sealed class DISPMANX_MODEINFO_T
     {
         public int width;
         public int height;

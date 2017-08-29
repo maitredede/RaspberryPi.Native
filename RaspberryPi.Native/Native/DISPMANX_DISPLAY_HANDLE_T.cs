@@ -6,7 +6,7 @@ using System.Text;
 namespace RaspberryPi.Native
 {
     [StructLayout(LayoutKind.Sequential)]
-    internal struct DISPMANX_DISPLAY_HANDLE_T
+    public sealed class DISPMANX_DISPLAY_HANDLE_T
     {
         public IntPtr Handle;
     }

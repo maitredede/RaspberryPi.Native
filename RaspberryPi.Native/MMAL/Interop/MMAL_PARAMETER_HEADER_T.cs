@@ -7,7 +7,7 @@ using System.Text;
 namespace RaspberryPi.MMAL.Interop
 {
     [StructLayout(LayoutKind.Sequential)]
-    internal struct MMAL_PARAMETER_HEADER_T
+    public sealed class MMAL_PARAMETER_HEADER_T
     {
         [MarshalAs(UnmanagedType.U4)]
         public MMALParameterId  id;      /**< Parameter ID. */

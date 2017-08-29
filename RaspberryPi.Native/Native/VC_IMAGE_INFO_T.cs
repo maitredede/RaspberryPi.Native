@@ -6,9 +6,9 @@ using System.Text;
 namespace RaspberryPi.Native
 {
     [StructLayout(LayoutKind.Sequential)]
-    internal struct VC_IMAGE_INFO_T
+    public sealed class VC_IMAGE_INFO_T
     {
-        VC_IMAGE_YUVINFO_T yuv;
-        ushort info;
+        public VC_IMAGE_YUVINFO_T yuv;
+        public ushort info;
     }
 }

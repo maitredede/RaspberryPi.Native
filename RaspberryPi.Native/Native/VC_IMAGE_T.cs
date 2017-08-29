@@ -6,7 +6,7 @@ using System.Text;
 namespace RaspberryPi.Native
 {
     [StructLayout(LayoutKind.Sequential, Size = 64)]
-    internal struct VC_IMAGE_T
+    public sealed class VC_IMAGE_T
     {
         VC_IMAGE_TYPE_T type;
         VC_IMAGE_INFO_T info;           /* format-specific info; zero for VC02 behaviour */

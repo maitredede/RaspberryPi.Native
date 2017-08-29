@@ -6,7 +6,7 @@ using System.Text;
 namespace RaspberryPi.MMAL.Interop
 {
     [StructLayout(LayoutKind.Sequential)]
-    internal struct MMAL_PARAMETER_CAMERA_INFO_CAMERA_T
+    public sealed class MMAL_PARAMETER_CAMERA_INFO_CAMERA_T
     {
         [MarshalAs(UnmanagedType.U4)]
         public int port_id;

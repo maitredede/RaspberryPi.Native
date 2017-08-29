@@ -6,7 +6,7 @@ using System.Text;
 namespace RaspberryPi.MMAL.Interop
 {
     [StructLayout(LayoutKind.Sequential)]
-    public struct MMAL_PORT_T
+    public sealed class MMAL_PORT_T
     {
         public IntPtr priv; /**< Private member used by the framework */
         [MarshalAs(UnmanagedType.LPStr)]

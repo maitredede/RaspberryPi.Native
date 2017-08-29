@@ -6,7 +6,7 @@ using System.Text;
 namespace RaspberryPi.MMAL.Interop
 {
     [StructLayout(LayoutKind.Sequential)]
-    public struct MMAL_COMPONENT_T
+    public sealed class MMAL_COMPONENT_T
     {
         /** Pointer to the private data of the module in use */
         //struct MMAL_COMPONENT_PRIVATE_T *priv;

@@ -7,7 +7,7 @@ using MMAL_FOURCC_T = System.UInt32;
 namespace RaspberryPi.MMAL.Interop
 {
     [StructLayout(LayoutKind.Sequential)]
-    public struct MMAL_VIDEO_FORMAT_T
+    public sealed class MMAL_VIDEO_FORMAT_T
     {
        public uint width;        /**< Width of frame in pixels */
         public uint height;       /**< Height of frame in rows of pixels */

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RaspberryPi.MMAL.Interop
 {
-    public struct MMAL_RATIONAL_T
+    public sealed class MMAL_RATIONAL_T
     {
         public int num, den;
     }

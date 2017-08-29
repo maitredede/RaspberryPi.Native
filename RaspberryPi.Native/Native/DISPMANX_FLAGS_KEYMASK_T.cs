@@ -5,7 +5,7 @@ using System.Text;
 namespace RaspberryPi.Native
 {
     [Flags]
-    internal enum DISPMANX_FLAGS_KEYMASK_T
+    public enum DISPMANX_FLAGS_KEYMASK_T
     {
         OVERRIDE = 1,
         SMOOTH = 1 << 1,

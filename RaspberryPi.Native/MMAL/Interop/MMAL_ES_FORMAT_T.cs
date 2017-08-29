@@ -7,7 +7,7 @@ using MMAL_FOURCC_T = System.UInt32;
 namespace RaspberryPi.MMAL.Interop
 {
     [StructLayout(LayoutKind.Sequential)]
-    public struct MMAL_ES_FORMAT_T
+    public sealed class MMAL_ES_FORMAT_T
     {
         [MarshalAs(UnmanagedType.I4)]
         public MMAL_ES_TYPE_T type;           /**< Type of the elementary stream */

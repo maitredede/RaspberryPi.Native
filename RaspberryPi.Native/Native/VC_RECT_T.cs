@@ -7,7 +7,7 @@ using System.Text;
 namespace RaspberryPi.Native
 {
     [StructLayout(LayoutKind.Sequential)]
-    internal struct VC_RECT_T
+    public sealed class VC_RECT_T
     {
         public VC_RECT_T(Rectangle rect) : this(rect.X, rect.Y, rect.Width, rect.Height)
         {

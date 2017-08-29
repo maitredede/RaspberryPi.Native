@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RaspberryPi.MMAL
 {
-    public struct StereoScopicMode
+    public sealed class StereoScopicMode
     {
         public MMAL_STEREOSCOPIC_MODE_T Mode { get; set; }
         public bool Decimate { get; set; }

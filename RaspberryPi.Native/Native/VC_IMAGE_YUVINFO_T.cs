@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RaspberryPi.Native
 {
-    internal enum VC_IMAGE_YUVINFO_T:ushort
+    public enum VC_IMAGE_YUVINFO_T : ushort
     {
         VC_IMAGE_YUVINFO_UNSPECIFIED = 0,   /* Unknown or unset - defaults to BT601 interstitial */
 

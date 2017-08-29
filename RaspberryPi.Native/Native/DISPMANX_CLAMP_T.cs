@@ -6,7 +6,7 @@ using System.Text;
 namespace RaspberryPi.Native
 {
     [StructLayout(LayoutKind.Sequential)]
-    internal sealed class DISPMANX_CLAMP_T
+    public sealed class DISPMANX_CLAMP_T
     {
         public DISPMANX_FLAGS_CLAMP_T mode;
         public DISPMANX_FLAGS_KEYMASK_T key_mask;

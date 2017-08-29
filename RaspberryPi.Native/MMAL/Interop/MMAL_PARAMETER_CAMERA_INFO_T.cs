@@ -6,7 +6,7 @@ using System.Text;
 namespace RaspberryPi.MMAL.Interop
 {
     [StructLayout(LayoutKind.Sequential)]
-    internal struct MMAL_PARAMETER_CAMERA_INFO_T
+    public sealed class MMAL_PARAMETER_CAMERA_INFO_T
     {
         public MMAL_PARAMETER_HEADER_T hdr;
         [MarshalAs(UnmanagedType.U4)]

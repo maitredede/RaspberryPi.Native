@@ -6,7 +6,7 @@ using System.Text;
 namespace RaspberryPi.Native
 {
     [StructLayout(LayoutKind.Sequential)]
-    internal sealed class VC_DISPMANX_ALPHA_T
+    public sealed class VC_DISPMANX_ALPHA_T
     {
         public DISPMANX_FLAGS_ALPHA_T flags;
         public uint opacity;

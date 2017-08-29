@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RaspberryPi.Native
 {
-    internal enum DISPMANX_FLAGS_CLAMP_T
+    public enum DISPMANX_FLAGS_CLAMP_T
     {
         NONE = 0,
         LUMA_TRANSPARENT = 1,
