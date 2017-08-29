@@ -3,6 +3,6 @@
   "name": "mypackage",
   "private": true,
   "dependencies": {
-    "@aspnet/signalr-client": "0.1.0-alpha1-26770"
+    "@aspnet/signalr-client": "0.1.0-alpha1-26830"
   }
 }
