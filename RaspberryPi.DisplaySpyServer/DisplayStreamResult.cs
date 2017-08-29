@@ -38,20 +38,26 @@ namespace RaspberryPi.DisplaySpyServer
             {
                 Boundary = boundary
             };
-            while (!this.m_cancellationToken.IsCancellationRequested)
+            try
             {
-                ImageData data = await this.m_imageProvider.WaitOne(this.m_cancellationToken);
-                StringBuilder sb = new StringBuilder(boundary);
-                sb.Append(CRLF);
-                sb.Append("Content-Type: image/jpeg");
-                sb.Append(CRLF);
-                sb.AppendFormat("Content-Length: {0}", data.ImageJpeg.Length);
-                sb.Append(CRLF);
-                sb.Append(CRLF);
-                byte[] partHeaders = Encoding.UTF8.GetBytes(sb.ToString());
-                await response.Body.WriteAsync(partHeaders, 0, partHeaders.Length);
-                await response.Body.WriteAsync(data.ImageJpeg, 0, data.ImageJpeg.Length, this.m_cancellationToken);
-                await response.Body.FlushAsync(this.m_cancellationToken);
+                while (!this.m_cancellationToken.IsCancellationRequested)
+                {
+                    ImageData data = await this.m_imageProvider.WaitOne(this.m_cancellationToken);
+                    StringBuilder sb = new StringBuilder(boundary);
+                    sb.Append(CRLF);
+                    sb.Append("Content-Type: image/jpeg");
+                    sb.Append(CRLF);
+                    sb.AppendFormat("Content-Length: {0}", data.ImageJpeg.Length);
+                    sb.Append(CRLF);
+                    sb.Append(CRLF);
+                    byte[] partHeaders = Encoding.UTF8.GetBytes(sb.ToString());
+                    await response.Body.WriteAsync(partHeaders, 0, partHeaders.Length);
+                    await response.Body.WriteAsync(data.ImageJpeg, 0, data.ImageJpeg.Length, this.m_cancellationToken);
+                    await response.Body.FlushAsync(this.m_cancellationToken);
+                }
+            }
+            catch(TaskCanceledException)
+            {
             }
         }
     }
