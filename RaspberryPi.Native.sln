@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.10
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaspberryPi.Native", "RaspberryPi.Native\RaspberryPi.Native.csproj", "{DDA003C8-25A2-494C-B4BE-7C3A2C97ECB8}"
 EndProject
@@ -32,7 +32,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaspberryPi.DisplaySpyServe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaspberryPi.ScreenShot", "RaspberryPi.ScreenShot\RaspberryPi.ScreenShot.csproj", "{49F61758-3677-4B64-8391-F5D26E82F118}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaspberryPi.Camera", "RaspberryPi.Camera\RaspberryPi.Camera.csproj", "{EA4FD55B-01FA-41C0-9889-735A96C9227C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaspberryPi.Camera", "RaspberryPi.Camera\RaspberryPi.Camera.csproj", "{EA4FD55B-01FA-41C0-9889-735A96C9227C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaspberryPi.Native.LibNFC", "RaspberryPi.Native.LibNFC\RaspberryPi.Native.LibNFC.csproj", "{D841D7E1-5A65-4841-A560-5DEE672967BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LibNFC", "LibNFC", "{E77C379B-B601-4387-9D20-19E414512CFA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaspberryPi.Native.LibNFC.NfcPoll", "RaspberryPi.Native.LibNFC.NfcPoll\RaspberryPi.Native.LibNFC.NfcPoll.csproj", "{CF798E28-CF29-4282-A431-FA4EA175B93C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CameraSamples", "CameraSamples", "{136F6FC8-3846-4C74-A965-3FBF7677764D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaspberryPi.Camera.Sample.CameraDirect", "RaspberryPi.Camera.Sample.CameraDirect\RaspberryPi.Camera.Sample.CameraDirect.csproj", "{70E0E045-66BE-4C61-9C54-876CA55242B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -164,6 +174,42 @@ Global
 		{EA4FD55B-01FA-41C0-9889-735A96C9227C}.Release|x64.Build.0 = Release|Any CPU
 		{EA4FD55B-01FA-41C0-9889-735A96C9227C}.Release|x86.ActiveCfg = Release|Any CPU
 		{EA4FD55B-01FA-41C0-9889-735A96C9227C}.Release|x86.Build.0 = Release|Any CPU
+		{D841D7E1-5A65-4841-A560-5DEE672967BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D841D7E1-5A65-4841-A560-5DEE672967BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D841D7E1-5A65-4841-A560-5DEE672967BE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D841D7E1-5A65-4841-A560-5DEE672967BE}.Debug|x64.Build.0 = Debug|Any CPU
+		{D841D7E1-5A65-4841-A560-5DEE672967BE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D841D7E1-5A65-4841-A560-5DEE672967BE}.Debug|x86.Build.0 = Debug|Any CPU
+		{D841D7E1-5A65-4841-A560-5DEE672967BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D841D7E1-5A65-4841-A560-5DEE672967BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D841D7E1-5A65-4841-A560-5DEE672967BE}.Release|x64.ActiveCfg = Release|Any CPU
+		{D841D7E1-5A65-4841-A560-5DEE672967BE}.Release|x64.Build.0 = Release|Any CPU
+		{D841D7E1-5A65-4841-A560-5DEE672967BE}.Release|x86.ActiveCfg = Release|Any CPU
+		{D841D7E1-5A65-4841-A560-5DEE672967BE}.Release|x86.Build.0 = Release|Any CPU
+		{CF798E28-CF29-4282-A431-FA4EA175B93C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF798E28-CF29-4282-A431-FA4EA175B93C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF798E28-CF29-4282-A431-FA4EA175B93C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CF798E28-CF29-4282-A431-FA4EA175B93C}.Debug|x64.Build.0 = Debug|Any CPU
+		{CF798E28-CF29-4282-A431-FA4EA175B93C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CF798E28-CF29-4282-A431-FA4EA175B93C}.Debug|x86.Build.0 = Debug|Any CPU
+		{CF798E28-CF29-4282-A431-FA4EA175B93C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF798E28-CF29-4282-A431-FA4EA175B93C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF798E28-CF29-4282-A431-FA4EA175B93C}.Release|x64.ActiveCfg = Release|Any CPU
+		{CF798E28-CF29-4282-A431-FA4EA175B93C}.Release|x64.Build.0 = Release|Any CPU
+		{CF798E28-CF29-4282-A431-FA4EA175B93C}.Release|x86.ActiveCfg = Release|Any CPU
+		{CF798E28-CF29-4282-A431-FA4EA175B93C}.Release|x86.Build.0 = Release|Any CPU
+		{70E0E045-66BE-4C61-9C54-876CA55242B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70E0E045-66BE-4C61-9C54-876CA55242B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70E0E045-66BE-4C61-9C54-876CA55242B0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{70E0E045-66BE-4C61-9C54-876CA55242B0}.Debug|x64.Build.0 = Debug|Any CPU
+		{70E0E045-66BE-4C61-9C54-876CA55242B0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{70E0E045-66BE-4C61-9C54-876CA55242B0}.Debug|x86.Build.0 = Debug|Any CPU
+		{70E0E045-66BE-4C61-9C54-876CA55242B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70E0E045-66BE-4C61-9C54-876CA55242B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70E0E045-66BE-4C61-9C54-876CA55242B0}.Release|x64.ActiveCfg = Release|Any CPU
+		{70E0E045-66BE-4C61-9C54-876CA55242B0}.Release|x64.Build.0 = Release|Any CPU
+		{70E0E045-66BE-4C61-9C54-876CA55242B0}.Release|x86.ActiveCfg = Release|Any CPU
+		{70E0E045-66BE-4C61-9C54-876CA55242B0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -177,6 +223,9 @@ Global
 		{77D46936-2604-4930-A376-8492D68629F3} = {4782FC06-E022-4416-990C-505B45A3DABE}
 		{423392B3-9DC1-441C-B3A1-CD098B2D9E70} = {4782FC06-E022-4416-990C-505B45A3DABE}
 		{49F61758-3677-4B64-8391-F5D26E82F118} = {4782FC06-E022-4416-990C-505B45A3DABE}
+		{D841D7E1-5A65-4841-A560-5DEE672967BE} = {E77C379B-B601-4387-9D20-19E414512CFA}
+		{CF798E28-CF29-4282-A431-FA4EA175B93C} = {E77C379B-B601-4387-9D20-19E414512CFA}
+		{70E0E045-66BE-4C61-9C54-876CA55242B0} = {136F6FC8-3846-4C74-A965-3FBF7677764D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {00A863B2-54F7-4373-A515-41E9AB53B649}

@@ -14,10 +14,11 @@ namespace RaspberryPi.Camera
         public byte Opacity { get; set; } = 255;
         public CameraRotation Rotate { get; set; } = CameraRotation.NoRotate;
         public string AdditionnalParams { get; set; }
+        internal string OutputFile { get; set; }
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder("-t 1");
+            StringBuilder sb = new StringBuilder("-t 1 ");
             if (this.FlipH) sb.Append("--hflip ");
             if (this.FlipV) sb.Append("--vflip ");
             if (this.Preview)
@@ -28,6 +29,9 @@ namespace RaspberryPi.Camera
                 sb.AppendFormat("--opacity {0} ", this.Opacity);
             if (this.Rotate != CameraRotation.NoRotate)
                 sb.AppendFormat("--rotation {0} ", (int)this.Rotate);
+
+            if (!string.IsNullOrEmpty(this.OutputFile))
+                sb.AppendFormat("--output \"{0}\" ", this.OutputFile);
 
             sb.Append(this.AdditionnalParams);
 
